@@ -1,0 +1,15 @@
+C:\Users\Usuario\Desktop\ProgBackend\bin\Debug\net6.0\ProgBackend.exe
+C:\Users\Usuario\Desktop\ProgBackend\bin\Debug\net6.0\ProgBackend.deps.json
+C:\Users\Usuario\Desktop\ProgBackend\bin\Debug\net6.0\ProgBackend.runtimeconfig.json
+C:\Users\Usuario\Desktop\ProgBackend\bin\Debug\net6.0\ProgBackend.dll
+C:\Users\Usuario\Desktop\ProgBackend\bin\Debug\net6.0\ProgBackend.pdb
+C:\Users\Usuario\Desktop\ProgBackend\obj\Debug\net6.0\ProgBackend.csproj.AssemblyReference.cache
+C:\Users\Usuario\Desktop\ProgBackend\obj\Debug\net6.0\ProgBackend.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Usuario\Desktop\ProgBackend\obj\Debug\net6.0\ProgBackend.AssemblyInfoInputs.cache
+C:\Users\Usuario\Desktop\ProgBackend\obj\Debug\net6.0\ProgBackend.AssemblyInfo.cs
+C:\Users\Usuario\Desktop\ProgBackend\obj\Debug\net6.0\ProgBackend.csproj.CoreCompileInputs.cache
+C:\Users\Usuario\Desktop\ProgBackend\obj\Debug\net6.0\ProgBackend.dll
+C:\Users\Usuario\Desktop\ProgBackend\obj\Debug\net6.0\refint\ProgBackend.dll
+C:\Users\Usuario\Desktop\ProgBackend\obj\Debug\net6.0\ProgBackend.pdb
+C:\Users\Usuario\Desktop\ProgBackend\obj\Debug\net6.0\ProgBackend.genruntimeconfig.cache
+C:\Users\Usuario\Desktop\ProgBackend\obj\Debug\net6.0\ref\ProgBackend.dll
