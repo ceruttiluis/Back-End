@@ -56,10 +56,10 @@ Maior de Idade: {novaPF.ValidarDataNasc(novaPF.dataNasc)}
 // Console.WriteLine("Nome: " +novaPF.nome+  " Cpf: "  +novaPF.cpf+"");
 Console.WriteLine($"--------------------------------------------------");
 
-//------------------------------------------------------
-// float impostoPagar = novaPJ.CalcularImposto(2000f);
-// Console.WriteLine($"R$ {impostoPagar:0.00}");
-// Console.WriteLine($"{impostoPagar.ToString("C")}");
-//-------------------------------------------------------
+
+float impostoPagar = novaPJ.CalcularImposto(2000f);
+Console.WriteLine($"R$ {impostoPagar:0.00}");
+Console.WriteLine($"{impostoPagar.ToString("C")}");
+
 
 
