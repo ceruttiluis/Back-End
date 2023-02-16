@@ -9,15 +9,26 @@ PessoaFisica novaPF = new PessoaFisica();
 PessoaJuridica novaPJ = new PessoaJuridica();
 Endereco novoEndPF = new Endereco();
 
+//Console.WriteLine(novaPJ.ValidarCnpj("13.902.709/0001-24"));
+
+novaPJ.cnpj = "13.902.709/0001-24";
+Console.WriteLine(@$"
+CNPJ: {novaPJ.cnpj}
+Valido: {novaPJ.ValidarCnpj(novaPJ.cnpj)}
+");
+
+Console.WriteLine($"--------------------------------------------------------");
+
+
 novaPF.nome = "Cerutti";
 novaPF.cpf = "12345678945";
 novaPF.rendimento = 7000f;
 novaPF.dataNasc = new DateTime(2000/01/01);
 
-float resultado = novaPF.CalcularImposto(novaPF.rendimento);
-Console.WriteLine(resultado);
-Console.WriteLine($"-------------------------------------------------");
-
+// float resultado = novaPF.CalcularImposto(novaPF.rendimento);
+// Console.WriteLine(resultado);
+// Console.WriteLine($"-------------------------------------------------");
+//----------------------------------------------------------------------
 DateTime temp = new DateTime(2004,05,08);
 // Console.WriteLine(novaPF.ValidarDataNasc(temp));
 Console.WriteLine(novaPF.ValidarDataNasc("05/08/2004"));
@@ -45,10 +56,10 @@ Maior de Idade: {novaPF.ValidarDataNasc(novaPF.dataNasc)}
 // Console.WriteLine("Nome: " +novaPF.nome+  " Cpf: "  +novaPF.cpf+"");
 Console.WriteLine($"--------------------------------------------------");
 
-
-float impostoPagar = novaPJ.CalcularImposto(2000f);
-Console.WriteLine($"R$ {impostoPagar:0.00}");
-Console.WriteLine($"{impostoPagar.ToString("C")}");
-
+//------------------------------------------------------
+// float impostoPagar = novaPJ.CalcularImposto(2000f);
+// Console.WriteLine($"R$ {impostoPagar:0.00}");
+// Console.WriteLine($"{impostoPagar.ToString("C")}");
+//-------------------------------------------------------
 
 
