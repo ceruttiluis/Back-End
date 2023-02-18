@@ -8,6 +8,9 @@ using ProgBackend.Classes;
 Console.Clear();
 
 Utils.BarraCarregamento("Iniciando", 3,".");
+Console.Clear();
+
+List<PessoaFisica> listaPF = new List<PessoaFisica>();
 
 string? opcao;
     do {
@@ -31,35 +34,123 @@ Thread.Sleep(1000);
         switch (opcao)
         {
             case "1":
-                    PessoaFisica novaPF = new PessoaFisica();
-                    Endereco novoEndPF = new Endereco();
+                    PessoaFisica metodoPF = new PessoaFisica();
+                    string? opcaoPF;
+                    do
+                    {
+                        Console.Clear();
+                        Console.WriteLine(@$"
 
-                    novaPF.nome = "Cerutti";
-                    novaPF.cpf = "12345678945";
-                    novaPF.rendimento = 7000f;
-                    novaPF.dataNasc = new DateTime(2000/01/01);
+                        ========================================================
+                        |         Bem Vindo ao Sistema de Cadastro             |
+                        |         de Pessoas Fisicas e Juridicas               |
+                        ========================================================
+                        |          Digite o Número da Opção desejada           |
+                        ========================================================
+                        |                                                      |
+                        |               1- Cadastrar Pessoa Física             |
+                        |               2- Mostrar Pessoas Físicas             |
+                        |               0- Voltar ao menu anterior              |
+                        ========================================================
+                        ");
+                        opcaoPF = Console.ReadLine();
+                        switch (opcaoPF)
+                        {
+                            case "1":
+                            Console.Clear();
+                            Endereco novoEndPF = new Endereco();
+                            PessoaFisica novaPF = new PessoaFisica(); 
+                            Console.WriteLine($"Digite o Nome da pessoa física que deseja cadastrar");
+                            novaPF.nome = Console.ReadLine();
 
-                    float resultado = novaPF.CalcularImposto(novaPF.rendimento);
-                    Console.WriteLine(resultado);
+                            bool dataValida;
+                            do
+                            {
+                                Console.WriteLine($"Digite a data de nascimento");
+                                string dataNasc = Console.ReadLine();
 
-                    DateTime temp = new DateTime(2004,05,08);
-                    // Console.WriteLine(novaPF.ValidarDataNasc(temp));
-                    Console.WriteLine(novaPF.ValidarDataNasc("05/08/2004"));
+                                dataValida = metodoPF.ValidarDataNasc(dataNasc);
 
-                    novoEndPF.Logradouro = "Rua Niteroi";
-                    novoEndPF.numero = 180;
-                    novoEndPF.complemento = "Prédio";
-                    novoEndPF.endComercial = true;
+                                if (dataValida)
+                                {
+                                    novaPF.dataNasc = dataNasc;
+                                } else {
+                                    Console.ForegroundColor = ConsoleColor.DarkRed;
+                                    Console.WriteLine($"Data Inválida, pore favor digite uma data valida.");
+                                    Console.ResetColor();
+                                }     
+                            } while (dataValida == false);
 
-                    novaPF.endereco = novoEndPF;
+                            Console.WriteLine($"Digite o número de CPF");                                                
+                            novaPF.cpf = Console.ReadLine();
+
+                            Console.WriteLine($"Digite o Rendimento mensal(apenas números)");
+                            novaPF.rendimento = float.Parse(Console.ReadLine());
+
+                            Console.WriteLine($"Digite o Logradouro");
+                            novoEndPF.Logradouro = Console.ReadLine();
+
+                            Console.WriteLine($"Digite o número");
+                            novoEndPF.numero = int.Parse(Console.ReadLine());
+
+                            Console.WriteLine($"Digite o complemento(aperte ENTER para vazio)");
+                            novoEndPF.complemento = Console.ReadLine();
+                            Console.WriteLine($"Este endereço é comercial?S ou N");
+                            string endCom = Console.ReadLine().ToUpper();
+                            if (endCom == "S")
+                            {
+                                novoEndPF.endComercial = true;
+                            } else {
+                                novoEndPF.endComercial = false;
+                            }                            
+                            novaPF.endereco = novoEndPF;
+                            listaPF.Add(novaPF);
+
+                            Console.ForegroundColor = ConsoleColor.DarkGreen;
+                            Console.WriteLine($"Cadastro realizado com sucesso!");
+                            Console.ResetColor();
+
+                                break;
+                            case "2":
+                                Console.Clear();
+                                if (listaPF.Count > 0)
+                                {
+                                    foreach (PessoaFisica cadaPessoa in listaPF)
+                                    {
+                                        Console.Clear();
+                                        Console.WriteLine(cadaPessoa.ValidarDataNasc("05/08/2004"));
+                                        Console.WriteLine(@$"
+                                        Nome: {cadaPessoa.nome}
+                                        Cpf: {cadaPessoa.cpf}
+                                        Rendimento: {cadaPessoa.rendimento.ToString("C")}
+                                        Nome da Rua: {cadaPessoa.endereco.Logradouro}, Num: {cadaPessoa.endereco.numero}
+                                        Endereço Comercial?:{(((bool)cadaPessoa.endereco.endComercial)?"SIM" : "NÂO")}
+                                        Impostos á pagar:{cadaPessoa.CalcularImposto(cadaPessoa.rendimento).ToString("C")}
+                                        ");
+                                        Console.WriteLine($"Para continuar, tecle Enter");
+                                        Console.ReadLine();
+                                    }
+                                } else {
+                                    Console.WriteLine($"Lista Vazia");
+                                    Thread.Sleep(3000);
+                                }
+
+                                break;
+                            case "0":
+                                Console.Clear();
+                                break;    
+                            default:
+                                Console.Clear();
+                                Console.WriteLine($"Opção Invalida, por favor digite outra opção!");
+                                Thread.Sleep(3000);
+                                break;
+                        }
+                        
+                    } while (opcaoPF != "0");
+                    
                 
-                    Console.WriteLine(@$"
-                    Nome: {novaPF.nome}
-                    Nome da Rua: {novaPF.endereco.Logradouro}, Num: {novaPF.endereco.numero}
-                    Maior de Idade: {novaPF.ValidarDataNasc(novaPF.dataNasc)}
-                    ");
-                    Console.WriteLine($"Para continuar, tecle Enter");
-                    Console.ReadLine();
+                
+                    
                 break;
             case "2":
                     PessoaJuridica novaPJ = new PessoaJuridica();

@@ -10,7 +10,7 @@ namespace ProgBackend.Classes
     {
         public string? cpf {get; set;}
         
-        public DateTime dataNasc {get; set;}
+        public string? dataNasc {get; set;}
 
         public override float CalcularImposto(float rendimento)
         {
