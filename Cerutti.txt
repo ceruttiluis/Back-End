@@ -1,4 +1,0 @@
-Nome: Cerutti
-CPF: 123.456.789-45
-Rendimento: R$ 7.000,00
-dataNasc: 05/08/2004

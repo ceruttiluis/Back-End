@@ -12,6 +12,8 @@ namespace ProgBackend.Classes
         
         public string? dataNasc {get; set;}
 
+        public string caminho {get; private set;} = "Database/PessoaFisica.csv";
+
         public override float CalcularImposto(float rendimento)
         {
             if (rendimento <= 1500)
@@ -68,6 +70,34 @@ namespace ProgBackend.Classes
            }
            
             return false;
+        }
+        public void Inserir (PessoaFisica PF)
+        {
+            VerificarPastaArquivo(caminho);
+            string[] PFString = {$"{PF.nome}, {PF.cpf}, {PF.dataNasc}, {PF.endereco.Logradouro}, {PF.endereco.numero}, {PF.endereco.endComercial}, {PF.CalcularImposto(PF.rendimento)}"};
+
+            File.AppendAllLines(caminho, PFString);
+        }
+
+        public List<PessoaFisica> Ler()
+        {
+            List<PessoaFisica> ListaPF = new List<PessoaFisica>();
+
+            string[] linhas = File.ReadAllLines(caminho);
+
+            foreach (string cadaLinha in linhas)
+            {
+                string[] atributos = cadaLinha.Split(",");
+
+                PessoaFisica cadaPF = new PessoaFisica();
+
+                cadaPF.nome = atributos[0];
+                cadaPF.cpf = atributos[1];
+                cadaPF.dataNasc = atributos[2];
+
+                ListaPF.Add(cadaPF);
+            }
+            return ListaPF;
         }
     }
 }

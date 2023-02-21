@@ -107,6 +107,20 @@ Thread.Sleep(1000);
                             }                            
                             novaPF.endereco = novoEndPF;
                             listaPF.Add(novaPF);
+                            metodoPF.Inserir(novaPF);
+                            // listaPF.Add(novaPF);
+
+                            using (StreamWriter sw = new StreamWriter($"{novaPF.nome}.txt"))
+                            {
+                                sw.WriteLine(novaPF.nome);
+                                sw.WriteLine(novaPF.dataNasc);
+                                sw.WriteLine(novaPF.cpf);
+                                sw.WriteLine(novaPF.rendimento);
+                                sw.WriteLine(novoEndPF.Logradouro);
+                                sw.WriteLine(novoEndPF.numero);
+                                sw.WriteLine(novoEndPF.complemento);
+                                sw.WriteLine(novoEndPF.endComercial);
+                            }
 
                             Console.ForegroundColor = ConsoleColor.DarkGreen;
                             Console.WriteLine($"Cadastro realizado com sucesso!");
@@ -117,17 +131,18 @@ Thread.Sleep(1000);
                                 Console.Clear();
                                 if (listaPF.Count > 0)
                                 {
-                                    foreach (PessoaFisica cadaPessoa in listaPF)
+                                    List<PessoaFisica> ListaPF = metodoPF.Ler();
+                                    foreach (PessoaFisica cadaItem in listaPF)
                                     {
                                         Console.Clear();
-                                        Console.WriteLine(cadaPessoa.ValidarDataNasc("05/08/2004"));
+                                        Console.WriteLine(cadaItem.ValidarDataNasc("05/08/2004"));
                                         Console.WriteLine(@$"
-                                        Nome: {cadaPessoa.nome}
-                                        Cpf: {cadaPessoa.cpf}
-                                        Rendimento: {cadaPessoa.rendimento.ToString("C")}
-                                        Nome da Rua: {cadaPessoa.endereco.Logradouro}, Num: {cadaPessoa.endereco.numero}
-                                        Endereço Comercial?:{(((bool)cadaPessoa.endereco.endComercial)?"SIM" : "NÂO")}
-                                        Impostos á pagar:{cadaPessoa.CalcularImposto(cadaPessoa.rendimento).ToString("C")}
+                                        Nome: {cadaItem.nome}
+                                        Cpf: {cadaItem.cpf}
+                                        Rendimento: {cadaItem.rendimento.ToString("C")}
+                                        Nome da Rua: {cadaItem.endereco.Logradouro}, Num: {cadaItem.endereco.numero}
+                                        Endereço Comercial?:{(((bool)cadaItem.endereco.endComercial)?"SIM" : "NÂO")}
+                                        Impostos á pagar:{cadaItem.CalcularImposto(cadaItem.rendimento).ToString("C")}
                                         ");
                                         Console.WriteLine($"Para continuar, tecle Enter");
                                         Console.ReadLine();
@@ -137,6 +152,16 @@ Thread.Sleep(1000);
                                     Thread.Sleep(3000);
                                 }
 
+                                using (StreamReader sr = new StreamReader("LuisCerutti.txt"))
+                                {
+                                    string linha;
+                                    while((linha = sr.ReadLine()) != null)
+                                    {
+                                        Console.WriteLine($"{linha}");
+                                    }
+                                }
+                                Console.WriteLine($"Aperte ENTER para continuar");
+                                Console.ReadLine();
                                 break;
                             case "0":
                                 Console.Clear();
@@ -178,9 +203,13 @@ Thread.Sleep(1000);
                             Console.Clear();
                             PessoaJuridica novaPJ = new PessoaJuridica();    
                             Endereco novoEndPJ = new Endereco();
+                            // novaPJ.nome = "Novapj";
+                            // novaPJ.cnpj = "00.000.000/0001-00";
+                            // novaPJ.razaoSocial = "razao";
+                            //  metodoPJ.Inserir(novaPJ);
                             Console.WriteLine($"Digite o nome da pessoa Juridica que deseja cadastrar");
                             novaPJ.nome = Console.ReadLine();
-
+                           
                             Console.WriteLine($"Digite seu Cnpj");
                             novaPJ.cnpj = Console.ReadLine();
                             Console.WriteLine(novaPJ.ValidarCnpj(novaPJ.cnpj));
@@ -210,6 +239,7 @@ Thread.Sleep(1000);
                             }
                             novaPJ.endereco = novoEndPJ;
                             listaPJ.Add(novaPJ);
+                            metodoPJ.Inserir(novaPJ);
 
                             Console.ForegroundColor = ConsoleColor.DarkGreen;
                             Console.WriteLine($"Cadastro realizado com sucesso!");
@@ -221,18 +251,19 @@ Thread.Sleep(1000);
                                 Console.Clear();
                                 if (listaPJ.Count > 0)
                                 {
-                                    foreach (PessoaJuridica cadaPessoa in listaPJ)
+                                    List<PessoaJuridica> ListaPJ = metodoPJ.Ler();
+                                    foreach (PessoaJuridica cadaItem in listaPJ)
                                     {
                                         Console.Clear();
                                         Console.WriteLine(@$"
-                                        Nome: {cadaPessoa.nome}
-                                        CNPJ: {cadaPessoa.cnpj}
-                                        Valido: {cadaPessoa.ValidarCnpj(cadaPessoa.cnpj)}
-                                        Razão Social: {cadaPessoa.razaoSocial}
-                                        Rendimento: {cadaPessoa.rendimento.ToString("C")}
-                                        Nome da Rua: {cadaPessoa.endereco.Logradouro}, Num: {cadaPessoa.endereco.numero}
-                                        Endereço Comercial?: {(((bool)cadaPessoa.endereco.endComercial)?"SIM" : "NÃO")}
-                                        Impostos á Pagar: {cadaPessoa.CalcularImposto(cadaPessoa.rendimento).ToString("C")}
+                                        Nome: {cadaItem.nome}
+                                        CNPJ: {cadaItem.cnpj}
+                                        Valido: {cadaItem.ValidarCnpj(cadaItem.cnpj)}
+                                        Razão Social: {cadaItem.razaoSocial}
+                                        Rendimento: {cadaItem.rendimento.ToString("C")}
+                                        Nome da Rua: {cadaItem.endereco.Logradouro}, Num: {cadaItem.endereco.numero}
+                                        Endereço Comercial?: {(((bool)cadaItem.endereco.endComercial)?"SIM" : "NÃO")}
+                                        Impostos á Pagar: {cadaItem.CalcularImposto(cadaItem.rendimento).ToString("C")}
                                         ");
                                         Console.WriteLine($"Para continuar, tecle Enter");
                                         Console.ReadLine();
@@ -241,7 +272,6 @@ Thread.Sleep(1000);
                                     Console.WriteLine($"Lista Vazia");
                                     Thread.Sleep(3000);
                                 }
-
                                 break;
                             case "0":
                                 Console.Clear();
